@@ -1,3 +1,4 @@
+/* Body Styling */
 body {
   display: flex;
   justify-content: center;
@@ -8,47 +9,54 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* Wheel Container */
 .wheel-container {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   position: relative;
 }
 
+/* Wheel */
 .wheel {
   width: 100%;
   height: 100%;
-  border: 10px solid #fff;
   border-radius: 50%;
   background: conic-gradient(
-    #f44336 0deg 60deg,
-    #ff9800 60deg 120deg,
-    #ffeb3b 120deg 180deg,
-    #4caf50 180deg 240deg,
-    #2196f3 240deg 300deg,
-    #9c27b0 300deg 360deg
+    #FF0000 0deg 90deg,  
+    #FFFF00 90deg 180deg, 
+    #0000FF 180deg 270deg, 
+    #FFA500 270deg 360deg  
   );
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 1s linear; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-.wheel:hover {
-  transform: rotate(360deg);
-}
-
-.segment {
+/* Hollow Center of the Wheel */
+.wheel::before {
+  content: "";
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(135deg, #4b79a1, #283e51);
   position: absolute;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 2;
 }
 
-.segment:nth-child(1) { transform: rotate(30deg) translate(75px) rotate(-30deg); }
-.segment:nth-child(2) { transform: rotate(90deg) translate(75px) rotate(-90deg); }
-.segment:nth-child(3) { transform: rotate(150deg) translate(75px) rotate(-150deg); }
-.segment:nth-child(4) { transform: rotate(210deg) translate(75px) rotate(-210deg); }
-.segment:nth-child(5) { transform: rotate(270deg) translate(75px) rotate(-270deg); }
-.segment:nth-child(6) { transform: rotate(330deg) translate(75px) rotate(-330deg); }
+/* Rotate on Hover */
+.wheel:hover {
+  transform: rotate(720deg); 
+}
+
+/* Keyframes for Continuous Spin */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
